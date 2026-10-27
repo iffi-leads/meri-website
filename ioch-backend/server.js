@@ -74,7 +74,7 @@ app.get('/api/chats/:number', (req, res) => {
     });
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Backend running on http://localhost:3000`);
 });
