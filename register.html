@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073b30">
+  <title>Student Registration | IOCH</title>
+  <style>
+    :root { --ink:#172923; --muted:#64736d; --green:#0c6048; --dark:#073b30; --mint:#e8f4ee; --line:#e1e9e4; --wash:#f6f9f7; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--wash); line-height:1.55; }
+    a { color:var(--green); }
+    .top { background:var(--dark); color:#e4eee8; }
+    .top-inner,.nav-inner,.content,.footer-inner { width:min(940px,calc(100% - 36px)); margin:auto; }
+    .top-inner { display:flex; justify-content:space-between; gap:12px; padding:9px 0; font-size:12px; }
+    .top a { color:inherit; text-decoration:none; }
+    header { background:#fff; border-bottom:1px solid var(--line); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; min-height:72px; }
+    .brand { display:flex; align-items:center; gap:10px; color:var(--ink); font-weight:800; text-decoration:none; }
+    .mark { display:grid; width:42px; height:42px; place-items:center; border-radius:13px 13px 13px 4px; background:var(--green); color:white; font-size:13px; }
+    .brand small { display:block; color:var(--muted); font-size:10px; letter-spacing:.1em; }
+    .back { font-size:14px; font-weight:700; text-decoration:none; }
+    .content { padding:42px 0 70px; }
+    .intro { max-width:720px; margin:0 auto 23px; text-align:center; }
+    .eyebrow { color:var(--green); font-size:12px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+    h1 { margin:8px 0; font-size:clamp(32px,5vw,46px); line-height:1.12; letter-spacing:-.05em; }
+    .intro p { margin:0; color:var(--muted); }
+    .notice { margin:24px 0; padding:15px 17px; border:1px solid #e8d29a; border-radius:10px; background:#fff9e9; color:#634c1d; font-size:13px; }
+    .form-card { padding:clamp(20px,4vw,38px); border:1px solid var(--line); border-radius:16px; background:#fff; box-shadow:0 12px 40px rgba(17,47,36,.06); }
+    fieldset { margin:0; padding:0; border:0; }
+    .form-section + .form-section { margin-top:34px; padding-top:27px; border-top:1px solid var(--line); }
+    legend { margin-bottom:18px; padding:0; font-size:19px; font-weight:800; letter-spacing:-.025em; }
+    legend span { margin-right:8px; color:var(--green); font-size:13px; letter-spacing:.08em; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+    .grid.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .field { min-width:0; }
+    .field.full { grid-column:1/-1; }
+    label { display:block; margin-bottom:6px; color:#32473d; font-size:13px; font-weight:700; }
+    input,select,textarea { width:100%; min-height:45px; padding:10px 12px; border:1px solid #d5dfd9; border-radius:8px; background:#fff; color:var(--ink); font:inherit; }
+    input:focus,select:focus,textarea:focus { border-color:var(--green); outline:3px solid rgba(12,96,72,.12); }
+    input[type=file] { min-height:unset; padding:10px; background:var(--wash); font-size:12px; }
+    input[type=checkbox],input[type=radio] { width:17px; min-height:17px; margin:2px 0 0; accent-color:var(--green); }
+    .help { margin:5px 0 0; color:var(--muted); font-size:12px; }
+    .subpanel { margin-top:15px; padding:17px; border:1px solid var(--line); border-radius:10px; background:var(--wash); }
+    .subpanel[hidden] { display:none; }
+    .section-label { margin:0 0 13px; font-size:14px; font-weight:800; }
+    .bank-options { display:flex; gap:10px; margin-bottom:13px; }
+    .bank-button { min-height:39px; padding:7px 12px; border:1px solid #cbd9d1; border-radius:7px; background:#fff; color:var(--ink); cursor:pointer; font:inherit; font-size:13px; font-weight:700; }
+    .bank-button[aria-pressed=true] { border-color:var(--green); background:var(--green); color:#fff; }
+    .bank-details { padding:14px; border:1px solid var(--line); border-radius:8px; background:#fff; font-size:13px; }
+    .bank-details p { margin:3px 0; }
+    .terms { max-height:190px; overflow:auto; padding:15px; border:1px solid var(--line); border-radius:8px; background:var(--wash); color:#40524a; font-size:12px; }
+    .terms p:first-child { margin-top:0; }
+    .terms p:last-child { margin-bottom:0; }
+    .choice { display:flex; align-items:flex-start; gap:9px; margin:12px 0 0; color:#32473d; font-size:13px; font-weight:600; }
+    .submit-row { margin-top:26px; padding-top:22px; border-top:1px solid var(--line); }
+    .submit-row button { width:100%; min-height:50px; border:0; border-radius:9px; background:var(--green); color:white; font:inherit; font-weight:800; cursor:not-allowed; opacity:.65; }
+    .submit-row p { margin:9px 0 0; color:var(--muted); font-size:12px; text-align:center; }
+    footer { padding:20px 0; border-top:1px solid var(--line); color:var(--muted); font-size:12px; text-align:center; }
+    @media(max-width:650px) { .top-inner .top-location { display:none; } .grid,.grid.three { grid-template-columns:1fr; } .field.full { grid-column:auto; } .content { padding-top:30px; } .bank-options { flex-wrap:wrap; } }
+  </style>
+</head>
+<body>
+  <div class="top"><div class="top-inner"><span>IOCH Student Registration</span><a class="top-location" href="mailto:Support@ioch.org.pk">Support@ioch.org.pk</a></div></div>
+  <header><div class="nav-inner">
+    <a class="brand" href="index.html"><span class="mark">IOCH</span><span>IOCH<small>CAREER &amp; TRAINING HUB</small></span></a>
+    <a class="back" href="index.html">← Back to home</a>
+  </div></header>
+  <main class="content">
+    <div class="intro"><span class="eyebrow">Start your application</span><h1>Student registration</h1><p>Complete the sections below and prepare the requested documents. Fields marked with * are required.</p></div>
+    <div class="notice" role="note"><strong>Frontend preview:</strong> registration is not connected to a secure admissions server yet. Do not enter real personal details or upload identity/payment documents on this preview. Submissions will be enabled after backend integration.</div>
+
+    <form class="form-card" id="registration-form" action="/student-register" method="post" enctype="multipart/form-data">
+      <fieldset class="form-section">
+        <legend><span>01</span> Personal details</legend>
+        <div class="grid three">
+          <div class="field"><label for="title">Title</label><select id="title" name="title"><option>Mr</option><option>Mrs</option><option>Ms</option><option>Dr</option></select></div>
+          <div class="field"><label for="first_name">First name *</label><input id="first_name" name="first_name" autocomplete="given-name" required></div>
+          <div class="field"><label for="surname">Surname *</label><input id="surname" name="surname" autocomplete="family-name" required></div>
+          <div class="field"><label for="gender">Gender</label><select id="gender" name="gender"><option>Male</option><option>Female</option></select></div>
+          <div class="field"><label for="dob">Date of birth *</label><input id="dob" name="dob" type="date" required></div>
+          <div class="field"><label for="nationality">Nationality *</label><input id="nationality" name="nationality" placeholder="e.g. Pakistani" required></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend><span>02</span> Address &amp; contact</legend>
+        <div class="grid">
+          <div class="field full"><label for="address">Address *</label><input id="address" name="address" autocomplete="street-address" required></div>
+          <div class="field"><label for="city">City *</label><input id="city" name="city" autocomplete="address-level2" required></div>
+          <div class="field"><label for="postal_code">Postal code *</label><input id="postal_code" name="postal_code" autocomplete="postal-code" required></div>
+          <div class="field"><label for="country">Country *</label><input id="country" name="country" autocomplete="country-name" required></div>
+          <div class="field"><label for="contact">Mobile number *</label><input id="contact" name="contact" type="tel" autocomplete="tel" required></div>
+          <div class="field full"><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend><span>03</span> Course selection</legend>
+        <div class="grid">
+          <div class="field"><label for="course">Select course *</label>
+            <select id="course" name="course" required>
+              <option value="">Choose a program</option><option>First Aider</option><option>Fire Safety</option><option>Gas Monitor</option><option>OSHA 30</option><option>NEBOSH IGC</option><option>IOSH</option><option>Web Development</option><option>Graphic Designing</option><option>Digital Marketing</option><option>Python Programming</option><option>MS Office &amp; Excel</option><option>Computer Networking</option><option>Other — confirm with admissions</option>
+            </select>
+          </div>
+          <div class="field"><label for="course_reason">Why are you taking this course? *</label><input id="course_reason" name="course_reason" required></div>
+          <div class="field"><label for="course_date">Preferred exam date *</label><input id="course_date" name="course_date" type="date" required></div>
+          <div class="field"><label for="mode_of_learning">Mode of study</label><select id="mode_of_learning" name="mode_of_learning"><option>Virtual Learning on Zoom Meeting</option><option>Classroom</option></select></div>
+          <div class="field"><label for="resit">Are you a resit student?</label><select id="resit" name="resit"><option>No</option><option>Yes</option></select></div>
+        </div>
+        <div class="subpanel" id="resit-fields" hidden>
+          <p class="section-label">Resit details</p>
+          <div class="grid">
+            <div class="field"><label for="learner_number">Learner number</label><input id="learner_number" name="learner_number"></div>
+            <div class="field"><label for="institute_name">Previous institute</label><input id="institute_name" name="institute_name"></div>
+            <div class="field full"><label for="resit_result_upload">Previous result card</label><input id="resit_result_upload" name="resit_result_upload" type="file" accept=".jpg,.jpeg,.png,.pdf"></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend><span>04</span> Education &amp; identity</legend>
+        <div class="grid">
+          <div class="field"><label for="qualification">Highest qualification *</label><input id="qualification" name="qualification" required></div>
+          <div class="field"><label for="english_level">English language proficiency</label><select id="english_level" name="english_level"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div>
+          <div class="field full"><label for="qualification_upload">Last degree or certificate *</label><input id="qualification_upload" name="qualification_upload" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" required></div>
+          <div class="field"><label for="id_type">Identity document type *</label><select id="id_type" name="id_type" required><option value="">Choose document</option><option value="Passport">Passport</option><option value="National Identification Card">National Identification Card</option></select></div>
+          <div class="field"><label for="photo">Recent passport-size photo *</label><input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required></div>
+        </div>
+        <div class="subpanel" id="passport-fields" hidden>
+          <p class="section-label">Passport details</p>
+          <div class="grid">
+            <div class="field full"><label for="passport_no">Passport number *</label><input id="passport_no" name="passport_no"></div>
+            <div class="field"><label for="passport_front">Passport first page *</label><input id="passport_front" name="passport_front" type="file" accept="image/*,.pdf"></div>
+            <div class="field"><label for="passport_back">Passport second page *</label><input id="passport_back" name="passport_back" type="file" accept="image/*,.pdf"></div>
+          </div>
+        </div>
+        <div class="subpanel" id="cnic-fields" hidden>
+          <p class="section-label">National ID details</p>
+          <div class="grid">
+            <div class="field full"><label for="cnic_no">National ID number *</label><input id="cnic_no" name="cnic_no"></div>
+            <div class="field"><label for="cnic_front">National ID front *</label><input id="cnic_front" name="cnic_front" type="file" accept="image/*,.pdf"></div>
+            <div class="field"><label for="cnic_back">National ID back *</label><input id="cnic_back" name="cnic_back" type="file" accept="image/*,.pdf"></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend><span>05</span> Payment information</legend>
+        <div class="field"><label for="fee_amount">Fee amount (PKR) *</label><input id="fee_amount" name="fee_amount" type="number" min="20000" step="1" placeholder="Minimum PKR 20,000" required><p class="help">The existing application requires a minimum recorded amount of PKR 20,000. Confirm the current fee with admissions.</p></div>
+        <div class="field" style="margin-top:15px"><label for="paid_by">Paid by *</label><select id="paid_by" name="paid_by" required><option value="">Choose an option</option><option value="Self Paid">Self paid</option><option value="Blood Relation">Blood relation</option><option value="Third Party">Third party</option></select></div>
+        <p id="third-party-note" class="help" hidden>Third-party payments are not accepted. Please choose self-paid or blood relation.</p>
+        <div class="subpanel" id="payment-fields" hidden>
+          <p class="section-label">Bank transfer details</p>
+          <input id="bank_selected" name="bank_selected" type="hidden" value="Pakistan Bank (Faysal)">
+          <div class="bank-options" role="group" aria-label="Bank account region">
+            <button class="bank-button" type="button" data-bank="pakistan" aria-pressed="true">Pakistan</button>
+            <button class="bank-button" type="button" data-bank="saudi" aria-pressed="false">Saudi Arabia</button>
+          </div>
+          <div class="bank-details" id="bank-pakistan"><p><b>Account title:</b> Institution of occupational career hub (IOCH)</p><p><b>Bank:</b> Faysal Bank</p><p><b>Account number:</b> 3819499000001603</p><p><b>IBAN:</b> PK26FAYS3819499000001603</p></div>
+          <div class="bank-details" id="bank-saudi" hidden><p><b>Account title:</b> Peerless Training and Development</p><p><b>Bank:</b> Al Rajhi Bank</p><p><b>IBAN:</b> SA5280000432608016012567</p></div>
+          <div class="field" style="margin-top:14px"><label for="fee_slip_upload">Bank slip or receipt *</label><input id="fee_slip_upload" name="fee_slip_upload" type="file" accept="image/*,.pdf"></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-section">
+        <legend><span>06</span> Communication &amp; declaration</legend>
+        <div class="grid">
+          <div class="field"><label for="source">How did you hear from us? *</label><select id="source" name="source" required><option>Social media (Facebook, WhatsApp)</option><option>Website</option><option>Friend / Family</option><option>Other</option></select></div>
+          <div class="field"><label for="chat_upload">Communication evidence *</label><input id="chat_upload" name="chat_upload" type="file" accept="image/*,.pdf" required></div>
+          <div class="field full"><label for="declaration_name">Name as shown on identity document *</label><input id="declaration_name" name="declaration_name" required></div>
+        </div>
+        <div class="terms" style="margin-top:18px">
+          <p><b>Application and learner terms</b></p>
+          <p>Provide accurate information and keep your registered contact details up to date. Course schedules, fees and any applicable requirements should be confirmed with IOCH before payment. Application submission does not guarantee admission; applications are subject to review and approval.</p>
+          <p>For enquiries, complaints or refund requests, contact <a href="mailto:Support@ioch.org.pk">Support@ioch.org.pk</a> in writing and include your name, course and relevant details. Personal information should be handled in accordance with applicable data-protection requirements and the IOCH privacy notice. Applicable legal rights prevail over conflicting terms.</p>
+        </div>
+        <label class="choice"><input type="checkbox" name="terms_accepted" value="Yes" required><span>I have read and agree to the terms and conditions above. *</span></label>
+        <label class="choice"><input type="checkbox" name="declaration" value="Yes" required><span>I confirm that the information provided is true and agree to the student privacy and institute policies. *</span></label>
+      </fieldset>
+
+      <div class="submit-row">
+        <button type="submit" disabled>Registration submissions are not enabled yet</button>
+        <p>This preview does not store or send form data. The secure admissions backend must be connected before applications can be submitted.</p>
+      </div>
+    </form>
+  </main>
+  <footer><div class="footer-inner">© <span id="year"></span> Institution of Occupational Career Hub · <a href="mailto:Support@ioch.org.pk">Contact support</a></div></footer>
+  <script>
+    const resit = document.querySelector('#resit');
+    const idType = document.querySelector('#id_type');
+    const paidBy = document.querySelector('#paid_by');
+    const resitFields = document.querySelector('#resit-fields');
+    const passportFields = document.querySelector('#passport-fields');
+    const cnicFields = document.querySelector('#cnic-fields');
+    const paymentFields = document.querySelector('#payment-fields');
+    const thirdPartyNote = document.querySelector('#third-party-note');
+    const setRequired = (container, required) => {
+      container.querySelectorAll('input').forEach(input => { input.required = required; });
+    };
+    const updateResit = () => { resitFields.hidden = resit.value !== 'Yes'; };
+    const updateId = () => {
+      passportFields.hidden = idType.value !== 'Passport';
+      cnicFields.hidden = idType.value !== 'National Identification Card';
+      setRequired(passportFields, !passportFields.hidden);
+      setRequired(cnicFields, !cnicFields.hidden);
+    };
+    const updatePayment = () => {
+      paymentFields.hidden = !paidBy.value || paidBy.value === 'Third Party';
+      thirdPartyNote.hidden = paidBy.value !== 'Third Party';
+      setRequired(paymentFields, !paymentFields.hidden);
+    };
+    resit.addEventListener('change', updateResit);
+    idType.addEventListener('change', updateId);
+    paidBy.addEventListener('change', updatePayment);
+    document.querySelectorAll('.bank-button').forEach(button => button.addEventListener('click', () => {
+      const pakistan = button.dataset.bank === 'pakistan';
+      document.querySelector('#bank-pakistan').hidden = !pakistan;
+      document.querySelector('#bank-saudi').hidden = pakistan;
+      document.querySelector('#bank_selected').value = pakistan ? 'Pakistan Bank (Faysal)' : 'Saudi Arabia Bank (Al Rajhi)';
+      document.querySelectorAll('.bank-button').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    }));
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

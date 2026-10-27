@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IOCH Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#f1f5f4;--card:#fff;--tx:#0f172a;--mu:#64748b;--bd:#e2e8f0;--pr:#064e3b;--ac:#b08d2e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e1512;--card:#17211d;--tx:#e8efec;--mu:#93a39c;--bd:#2a3a33;--pr:#1f9d72}}
+:root[data-theme=dark]{--bg:#0e1512;--card:#17211d;--tx:#e8efec;--mu:#93a39c;--bd:#2a3a33;--pr:#1f9d72}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:14px system-ui,sans-serif}
+h2{margin:0 0 14px}.b{background:var(--pr);color:#fff;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;font:inherit}.b.r{background:#dc2626}.b.s{padding:5px 9px;font-size:12px}
+input,select{padding:9px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font:inherit;width:100%}
+label{display:block;font-size:12px;color:var(--mu)}.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px;margin-bottom:16px;overflow-x:auto}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end}
+table{width:100%;border-collapse:collapse}th,td{padding:9px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}th{font-size:11px;color:var(--mu);text-transform:uppercase}
+.top{display:flex;justify-content:space-between;align-items:center;padding:14px 6%;background:var(--card);border-bottom:1px solid var(--bd)}
+.hero{max-width:760px;margin:40px auto;padding:0 16px;text-align:center}.hero h1{font-size:34px;color:var(--pr)}.row{display:flex;gap:8px}
+.shell{display:flex;min-height:100vh}aside{width:210px;background:#0b2f23;color:#cfe5db;padding:14px 0;flex-shrink:0}aside b{display:block;padding:8px 18px 16px;color:#fff;font-size:17px}
+aside a{display:block;padding:11px 18px;cursor:pointer}aside a:hover,aside a.on{background:#134a37;color:#fff}main{flex:1;padding:20px;min-width:0}
+@media(max-width:700px){.shell{flex-direction:column}aside{width:100%;display:flex;flex-wrap:wrap;padding:0}aside b{width:100%;padding:10px 14px}aside a{padding:9px 12px}}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.st div{background:var(--card);border:1px solid var(--bd);border-top:4px solid var(--ac);border-radius:10px;padding:14px}.st b{display:block;font-size:26px}
+.cw{overflow-x:auto;padding:6px}
+.cert{width:1000px;height:700px;margin:0 auto;background:#fffdf5;border:14px solid #064e3b;padding:10px;position:relative;color:#064e3b;text-align:center;font-family:'Playfair Display',Georgia,serif}
+.ci{border:2px solid #b08d2e;height:100%;position:relative;padding-top:12px}
+.cno{position:absolute;top:10px;right:14px;font:700 12px system-ui}
+.lg{height:78px;margin:0 auto;display:flex;justify-content:center}.lg img{height:78px}.lg span{align-self:center;font:11px system-ui;color:#b08d2e;border:2px dashed #b08d2e;border-radius:50%;width:78px;height:78px;display:flex;align-items:center;justify-content:center}
+.org{letter-spacing:5px;font-weight:800;font-size:18px;margin-top:8px}.cert h1{font-size:62px;letter-spacing:6px;margin:2px 0;font-weight:800}
+.of{color:#b08d2e;letter-spacing:12px;font-weight:700;font-size:18px}.it{font-style:italic;color:#333;margin:12px 0 2px;font-size:16px}
+.nm{font-size:46px;font-style:italic;font-weight:700;width:680px;margin:0 auto;border-bottom:2px solid #b08d2e;min-height:60px}.pg{font-size:30px;font-weight:800;margin-top:4px;text-transform:uppercase}
+.dt{font:13px system-ui;color:#333;margin-top:10px}.bt{position:absolute;left:50px;right:50px;bottom:24px;display:flex;justify-content:space-between;align-items:flex-end;font-family:system-ui}
+.sg{width:230px;font-size:15px}.sg img{height:48px;display:block;margin:0 auto -4px}.sg i{display:block;border-top:2px solid #064e3b;margin-bottom:3px}.sg small{display:block;font-style:italic;color:#444}
+.mid small{display:block;font-size:10px;font-weight:700;color:#222;margin-top:3px}.qr{display:inline-block;background:#fff;padding:4px;border:1px solid #ccc}
+.seal{position:absolute;left:50%;margin-left:90px;bottom:26px;height:92px}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;justify-content:space-between;align-items:center;padding:12px 6%;background:var(--card);border-bottom:1px solid var(--bd)}.nav a{margin-left:20px;cursor:pointer;color:var(--mu)}.nav .b{margin-left:20px;color:#fff}
+.h0{background:linear-gradient(135deg,#064e3b,#0d7a58);color:#fff;text-align:center;padding:84px 6%}.h0 h1{font:800 clamp(30px,6vw,52px)/1.15 'Playfair Display',Georgia,serif;margin:0 0 14px}.h0 p{max-width:620px;margin:0 auto 26px;opacity:.9;font-size:16px}.h0 .b{padding:13px 24px;margin:4px;font-size:15px}.h0 .g{background:#b08d2e}.h0 .o{background:transparent;border:2px solid #fff}
+.sec{padding:54px 6%;max-width:1100px;margin:auto;text-align:center}.sec h2{font:700 28px 'Playfair Display',Georgia,serif;color:var(--pr)}.sec>p{color:var(--mu)}
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:22px}.gr div{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:22px}.gr span{font-size:34px}.gr b{display:block;margin:8px 0 4px}.gr small{color:var(--mu)}
+.vs{background:var(--card);border-block:1px solid var(--bd);max-width:none}.ft{text-align:center;padding:22px;background:#0b2f23;color:#cfe5db;font-size:13px}
+.bl{filter:blur(5px);user-select:none}#pa{display:none}@media print{body>*{display:none!important}body>#pa{display:block!important}#pa .cert{zoom:.93}@page{size:A4 landscape;margin:6mm}}
+</style></head><body>
+<div id="root"></div><div id="pa"></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const K='ioch_v2';let D;try{D=JSON.parse(localStorage.getItem(K))}catch(e){}
+D=D||{leads:[],users:[],branches:[],certs:[],set:{org:'INSTITUTION OF OCCUPATIONAL CAREER HUB',ins:'Daniyal Hamza',insT:'Course Instructor',dir:'Arfa',dirT:'Director, IOCH',logo:'',seal:'',sig1:'',sig2:'',base:'',pw:'admin123'}};
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(D))}catch(e){alert('Storage full: use smaller images')}};
+let auth=false,view='dash',role='S',me=null;
+const NAV=[['dash','📊 Dashboard'],['leads','👥 Leads'],['certs','📜 Certificates'],['users','👨‍💼 Users'],['branches','🏢 Branches'],['settings','⚙️ Settings']];
+const br=()=>D.branches.map(b=>b.name);
+const CF={leads:{t:'Leads',f:[{k:'name',l:'Student name'},{k:'phone',l:'Phone (92300…)'},{k:'course',l:'Course'},{k:'branch',l:'Branch',s:br},{k:'status',l:'Status',s:()=>['New','Contacted','Interested','Enrolled','Lost']}]},
+users:{t:'Users',f:[{k:'name',l:'Full name'},{k:'role',l:'Role',s:()=>['Admin','Sales Staff']},{k:'branch',l:'Branch',s:br},{k:'username',l:'Username'},{k:'pass',l:'Password'}]},
+branches:{t:'Branches',f:[{k:'name',l:'Branch name'},{k:'phone',l:'Phone'},{k:'city',l:'City'},{k:'email',l:'Email'}]}};
+const fmt=d=>{if(!d)return'N/A';const[y,m,x]=d.split('-');return x+'/'+m+'/'+y};
+function certHTML(c){const s=D.set,im=(u,c)=>u?`<img ${c?'class="'+c+'" ':''}src="${u}">`:'';
+return `<div class="cert"><div class="ci"><div class="cno">ID: ${esc(c.id)}</div><div class="lg">${s.logo?im(s.logo):'<span>LOGO</span>'}</div>
+<div class="org">${esc(s.org)}</div><h1>CERTIFICATE</h1><div class="of">— OF ACHIEVEMENT —</div>
+<p class="it">This certificate is proudly presented to</p><div class="nm">${esc(c.name.toUpperCase())}</div>
+<p class="it">for successfully completing the professional training program in</p><div class="pg">${esc(c.course)}</div>
+<p class="dt">from <b>${esc(c.start)}</b> to <b>${esc(c.end)}</b> · Duration: <b>${esc(c.dur)}</b> · Issued: <b>${esc(c.issued)}</b></p>
+<div class="bt"><div class="sg">${im(s.sig1)}<i></i><b>${esc(s.ins)}</b><small>${esc(s.insT)}</small></div>
+<div class="mid"><div class="qr"></div><small>SCAN TO VERIFY</small></div>
+<div class="sg">${im(s.sig2)}<i></i><b>${esc(s.dir)}</b><small>${esc(s.dirT)}</small></div></div>${im(s.seal,'seal')}</div></div>`}
+function qr(root,c){const e=root.querySelector('.qr');if(!e||!window.QRCode)return;e.innerHTML='';new QRCode(e,{text:(D.set.base||location.href.split('#')[0])+'#'+c.id,width:78,height:78,colorDark:'#064e3b',colorLight:'#ffffff'})}
+const sc=id=>document.getElementById(id).scrollIntoView({behavior:'smooth'});
+function landing(){$('#root').innerHTML=`<div class="nav"><b style="font-size:18px;color:var(--pr)">🎓 IOCH</b><div><a onclick="sc('top0')">Home</a><a onclick="sc('crs')">Courses</a><a onclick="sc('why')">Why IOCH</a><a onclick="sc('verify')">Verify</a><button class="b" onclick="$('#lg').showModal()">Login</button></div></div>
+<section class="h0" id="top0"><h1>Professional Safety &amp; Career Training</h1><p>Institution of Occupational Career Hub: practical, industry-focused programs that build job-ready skills. Every certificate we issue can be verified online.</p>
+<button class="b g" onclick="sc('verify')">✔ Verify Certificate</button><button class="b o" onclick="$('#lg').showModal()">Login</button></section>
+<section class="sec" id="crs"><h2>Our Programs</h2><p>Hands-on training for workplace safety and IT careers.</p><div class="gr"><div><span>🩹</span><b>First Aider</b><small>Emergency response and first aid</small></div><div><span>🔥</span><b>Fire Safety</b><small>Prevention, firefighting and evacuation</small></div><div><span>📟</span><b>Gas Monitor</b><small>Gas detection and safe operation</small></div><div><span>🦺</span><b>OSHA 30</b><small>Occupational safety standards</small></div><div><span>💻</span><b>Web Development</b><small>HTML, CSS, JavaScript and modern websites</small></div><div><span>🎨</span><b>Graphic Designing</b><small>Photoshop, Illustrator and branding</small></div><div><span>📈</span><b>Digital Marketing</b><small>SEO, social media and online ads</small></div><div><span>🐍</span><b>Python Programming</b><small>From basics to real projects</small></div><div><span>📊</span><b>MS Office &amp; Excel</b><small>Word, Excel and PowerPoint skills</small></div><div><span>🌐</span><b>Computer Networking</b><small>Setup, troubleshooting and security basics</small></div></div></section>
+<section class="sec" id="why"><h2>Why IOCH</h2><div class="gr"><div><span>👨‍🏫</span><b>Expert instructors</b><small>Learn from experienced professionals</small></div><div><span>🛠️</span><b>Practical training</b><small>Real scenarios, not just theory</small></div><div><span>🔍</span><b>Verifiable certificates</b><small>Employers can check any certificate by ID or QR</small></div></div></section>
+<section class="sec vs" id="verify"><h2>Verify a Certificate</h2><p>Enter the Certificate ID, or scan the QR code on the certificate.</p>
+<div class="row" style="max-width:560px;margin:auto"><input id="vid" placeholder="IOCH-2026-1234"><button class="b" onclick="verify()">Verify</button></div><p id="vm"></p><div id="vr" class="cw"></div></section>
+<div class="ft">© ${new Date().getFullYear()} ${esc(D.set.org)}. All rights reserved. · <a onclick="$('#lg').showModal()" style="cursor:pointer">Login</a></div>
+<dialog id="lg" style="border:1px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);width:330px"><h2>Super Admin Login</h2>
+<label>Username<input id="lu" value="superadmin"></label><br><label>Password<input id="lp" type="password"></label><br>
+<div class="row"><button class="b" onclick="login()">Login</button><button class="b r" onclick="$('#lg').close()">Cancel</button></div></dialog>`;hv()}
+function verify(){const id=$('#vid').value.trim().toUpperCase(),c=D.certs.find(x=>x.id===id),m=$('#vm'),r=$('#vr');
+if(c){m.innerHTML='<b style="color:#16a34a">✅ Verified: record found in the IOCH register.</b>';r.innerHTML=certHTML(c);qr(r,c)}
+else{m.innerHTML='<b style="color:#dc2626">❌ No record found for this ID.</b>';r.innerHTML=''}}
+function hv(){const h=decodeURIComponent(location.hash.slice(1));if(h&&!auth&&$('#vid')){$('#vid').value=h;verify()}}
+addEventListener('hashchange',hv);
+function login(){const u=$('#lu').value.trim(),p=$('#lp').value;let r=null;if(u==='superadmin'&&p===(D.set.pw||'admin123')){r='S';me=null}else{const x=D.users.find(x=>x.username===u&&x.pass&&x.pass===p);if(x){r=x.role==='Admin'?'A':'L';me=x}}
+if(!r)return alert('Wrong username or password');role=r;auth=true;view='dash';addLog('login');app()}
+function app(){$('#root').innerHTML=`<div class="shell"><aside><b>🎓 IOCH CRM</b>${NAV2().map(n=>`<a data-v="${n[0]}" onclick="go('${n[0]}')">${n[1]}</a>`).join('')}<a onclick="auth=false;landing()">🚪 Logout</a></aside><main id="view"></main></div>`;go(view)}
+function go(v){view=v;document.querySelectorAll('aside a').forEach(a=>a.classList.toggle('on',a.dataset.v===v));({dash,certs,settings,wa,log:logv}[v]||(()=>crud(v)))()}
+function dash(){const n=s=>D.leads.filter(l=>l.status===s).length;$('#view').innerHTML=`<h2>Dashboard</h2><div class="st"><div><small>Leads</small><b>${D.leads.length}</b></div><div><small>New leads</small><b>${n('New')}</b></div><div><small>Enrolled</small><b>${n('Enrolled')}</b></div><div><small>Certificates</small><b>${D.certs.length}</b></div><div><small>Users</small><b>${D.users.length}</b></div><div><small>Branches</small><b>${D.branches.length}</b></div></div>`}
+function crud(k){const C=CF[k];$('#view').innerHTML=`<h2>${C.t}</h2><div class="card"><div class="fg">${C.f.map(f=>f.s?`<label>${f.l}<select id="f_${f.k}"><option></option>${f.s().map(o=>`<option>${esc(o)}</option>`).join('')}</select></label>`:`<label>${f.l}<input id="f_${f.k}"></label>`).join('')}<button class="b" onclick="add('${k}')">+ Add</button></div></div><div class="card"><input id="q" placeholder="Search…" oninput="tbl('${k}')"><br><br><table><thead><tr>${C.f.map(f=>`<th>${f.l.split(' (')[0]}</th>`).join('')}<th></th></tr></thead><tbody id="tb"></tbody></table></div>`;tbl(k)}
+function add(k){const C=CF[k],r={id:Date.now()};C.f.forEach(f=>r[f.k]=$('#f_'+f.k).value.trim());if(!r[C.f[0].k])return alert('Fill '+C.f[0].l);if(k==='leads'&&!r.status)r.status='New';D[k].push(r);save();C.f.forEach(f=>$('#f_'+f.k).value='');tbl(k)}
+function tbl(k){const C=CF[k],q=($('#q').value||'').toLowerCase();$('#tb').innerHTML=D[k].filter(r=>JSON.stringify(r).toLowerCase().includes(q)).map(r=>`<tr>${C.f.map(f=>f.k==='status'&&k==='leads'?`<td><select onchange="setSt(${r.id},this.value)">${f.s().map(o=>`<option${o===r.status?' selected':''}>${o}</option>`).join('')}</select></td>`:`<td>${f.k==='pass'?'••••':esc(r[f.k])}</td>`).join('')}<td>${k==='leads'&&r.phone?`<a href="https://wa.me/${r.phone.replace(/\D/g,'')}" target="_blank" rel="noopener">💬</a> `:''}<button class="b r s" onclick="del('${k}',${r.id})">Delete</button></td></tr>`).join('')||'<tr><td>No records.</td></tr>'}
+function setSt(id,v){D.leads.find(l=>l.id===id).status=v;save()}
+function del(k,id){if(confirm('Delete?')){D[k]=D[k].filter(r=>r.id!==id);save();tbl(k)}}
+function certs(){$('#view').innerHTML=`<h2>Certificates</h2><div class="card"><div class="fg">
+<label>Certificate ID (blank = auto)<input id="g_id"></label><label>Student name<input id="g_n"></label><label>Course<input id="g_c"></label>
+<label>Start date<input id="g_s" type="date"></label><label>End date<input id="g_e" type="date"></label><label>Duration<input id="g_d" placeholder="3 Months"></label>
+<button class="b" onclick="gen()">Generate &amp; Save</button></div></div><div id="pv"></div>
+<div class="card"><div class="row"><input id="q" placeholder="Search ID or name…" oninput="recs()"><button class="b" onclick="csv()">⬇ CSV</button></div><br>
+<table><thead><tr><th>ID</th><th>Name</th><th>Course</th><th>Issued</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>`;recs()}
+function gen(){let id=$('#g_id').value.trim().toUpperCase();const n=$('#g_n').value.trim(),c=$('#g_c').value.trim();if(!n||!c)return alert('Name and course required');
+if(!id)do{id='IOCH-'+new Date().getFullYear()+'-'+(1000+Math.floor(Math.random()*9000))}while(D.certs.some(x=>x.id===id));
+if(D.certs.some(x=>x.id===id))return alert('This ID already exists');
+const r={id,name:n,course:c,start:fmt($('#g_s').value),end:fmt($('#g_e').value),dur:$('#g_d').value.trim()||'N/A',issued:new Date().toLocaleDateString('en-GB')};D.certs.push(r);save();recs();show(id)}
+function show(id){const c=D.certs.find(x=>x.id===id);$('#pv').innerHTML=`<div class="card"><button class="b" onclick="pr('${id}')">🖨 Print / Save PDF</button><br><br><div class="cw">${certHTML(c)}</div></div>`;qr($('#pv'),c);$('#pv').scrollIntoView({behavior:'smooth'})}
+function pr(id){const c=D.certs.find(x=>x.id===id);$('#pa').innerHTML=certHTML(c);qr($('#pa'),c);setTimeout(()=>print(),300)}
+function recs(){const q=($('#q').value||'').toLowerCase();$('#tb').innerHTML=D.certs.filter(c=>(c.id+c.name).toLowerCase().includes(q)).map(c=>`<tr><td><b>${esc(c.id)}</b></td><td>${esc(c.name)}</td><td>${esc(c.course)}</td><td>${esc(c.issued)}</td><td><button class="b s" onclick="show('${c.id}')">View</button> <button class="b r s" onclick="dc('${c.id}')">Delete</button></td></tr>`).join('')||'<tr><td>No records.</td></tr>'}
+function dc(id){if(confirm('Delete '+id+'?')){D.certs=D.certs.filter(c=>c.id!==id);save();recs()}}
+function csv(){const q=s=>'"'+String(s).replace(/"/g,'""')+'"';const t=['ID,Name,Course,Start,End,Duration,Issued'].concat(D.certs.map(c=>[c.id,c.name,c.course,c.start,c.end,c.dur,c.issued].map(q).join(','))).join('\n');dl(t,'ioch_certificates.csv','text/csv')}
+function dl(t,n,m){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:m}));a.download=n;a.click()}
+function img(k,i){const f=i.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const m=new Image();m.onload=()=>{const s=Math.min(1,300/Math.max(m.width,m.height)),c=document.createElement('canvas');c.width=m.width*s;c.height=m.height*s;c.getContext('2d').drawImage(m,0,0,c.width,c.height);D.set[k]=c.toDataURL('image/png');save();settings()};m.src=r.result};r.readAsDataURL(f)}
+function settings(){const s=D.set,t=[['org','Organization name'],['ins','Instructor name'],['insT','Instructor title'],['dir','Director name'],['dirT','Director title'],['base','Verification page URL (blank = this page)']],
+u=[['logo','Logo'],['seal','Seal / stamp'],['sig1','Instructor signature'],['sig2','Director signature']];
+$('#view').innerHTML=`<h2>Settings</h2><div class="card"><div class="fg">${t.map(x=>`<label>${x[1]}<input value="${esc(s[x[0]])}" onchange="D.set.${x[0]}=this.value;save()"></label>`).join('')}<label>Admin password<input type="password" placeholder="new password" onchange="if(this.value){D.set.pw=this.value;save();alert('Saved')}"></label></div></div>
+<div class="card"><p>Upload only your own authorized logo, seal and signatures.</p><div class="fg">${u.map(x=>`<label>${x[1]}<input type="file" accept="image/*" onchange="img('${x[0]}',this)">${s[x[0]]?`<img src="${s[x[0]]}" height="50"> <a onclick="D.set.${x[0]}='';save();settings()" style="cursor:pointer">remove</a>`:''}</label>`).join('')}</div></div>
+<div class="card"><button class="b" onclick="dl(JSON.stringify(D),'ioch_backup.json','application/json')">⬇ Backup (JSON)</button> <label style="display:inline-block">Restore<input type="file" accept=".json" onchange="rs(this)"></label></div>`}
+function rs(i){const r=new FileReader();r.onload=()=>{try{D=JSON.parse(r.result);save();alert('Restored');settings()}catch(e){alert('Invalid file')}};r.readAsText(i.files[0])}
+/* ===== WhatsApp CRM module ===== */
+D.wa=D.wa||{numbers:[],chats:[]};
+const NAV2=()=>[['dash','📊 Dashboard','SAL'],['leads','👥 Leads','SAL'],['wa','💬 WhatsApp','SAL'],['certs','📜 Certificates','SA'],['users','👨‍💼 Users','S'],['branches','🏢 Branches','S'],['log','🧾 Activity','S'],['settings','⚙️ Settings','S']].filter(n=>n[2].includes(role));
+const addLog=a=>{(D.log=D.log||[]).push({t:new Date().toLocaleString('en-GB'),u:role==='S'?'superadmin':(me&&me.name)||'?',a});D.log=D.log.slice(-300);save()};
+const mask=p=>role==='S'?p:p.slice(0,4)+'•••••'+p.slice(-2),bc=()=>role==='S'?'':'bl';
+const myNums=()=>D.wa.numbers.filter(n=>role==='S'||n.branch===(me&&me.branch));
+let cur=null,mr,ch=[];
+function wa(){$('#view').innerHTML=`<h2>WhatsApp CRM</h2>${role==='S'?`<div class="card"><div class="fg"><label>Label<input id="n_l" placeholder="Sales 1"></label><label>Branch<select id="n_b"><option></option>${br().map(o=>`<option>${esc(o)}</option>`).join('')}</select></label><label>WhatsApp number<input id="n_p" placeholder="923001234567"></label><button class="b" onclick="addNum()">+ Add number</button><button class="b" onclick="demo()">Load demo chats</button></div></div>`:''}<div class="card" style="display:grid;grid-template-columns:minmax(190px,260px) 1fr;gap:14px;min-height:420px"><div id="wl"></div><div id="wc"><p>Select a chat.</p></div></div>`;wl();autoOpen()}
+function wlOld(){$('#wl').innerHTML=myNums().map(n=>`<div style="margin-bottom:12px"><b>${esc(n.label)}</b> <small>${esc(n.branch)} · <span class="${bc()}">${esc(mask(n.phone))}</span></small> ${n.hung?'<span style="color:#dc2626">⏸ paused</span>':''}${role==='S'?` <button class="b s${n.hung?'':' r'}" onclick="hang(${n.id})">${n.hung?'Resume':'Hang'}</button>`:''}${D.wa.chats.filter(c=>c.numId===n.id).map(c=>`<div onclick="oc(${c.id})" style="padding:7px;border-bottom:1px solid var(--bd);cursor:pointer">👤 ${esc(c.name)}<br><small class="${bc()}">${esc(mask(c.phone))}</small></div>`).join('')}</div>`).join('')||'<p>No WhatsApp numbers yet.</p>'}
+function oc(id){cur=id;const c=D.wa.chats.find(x=>x.id===id),n=D.wa.numbers.find(x=>x.id===c.numId),off=n.hung&&role!=='S';
+$('#wc').innerHTML=`<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px"><div><b>${esc(c.name)}</b><br><small class="${bc()}">${esc(mask(c.phone))}</small></div>${role==='S'?`<div><button class="b s" onclick="reqLoc()">📍 Request location</button> <button class="b r s" onclick="delChat()">🗑 Delete chat</button></div>`:''}</div>
+<div style="height:420px;overflow-y:auto;background:var(--bg);border-radius:8px;padding:10px;margin:10px 0">${c.msgs.map(m=>`<div style="text-align:${m.dir==='out'?'right':'left'};margin:6px 0"><span style="display:inline-block;background:${m.dir==='out'?'#d9fdd3':'#fff'};color:#111;padding:7px 11px;border-radius:10px;max-width:85%;text-align:left">${m.type==='voice'?`🎤 <audio controls src="${esc(m.url)}" style="max-width:220px"></audio>`:m.type==='loc'?(role==='S'?`📍 <a href="https://www.openstreetmap.org/?mlat=${+m.lat}&mlon=${+m.lng}#map=16/${+m.lat}/${+m.lng}" target="_blank" rel="noopener">${+m.lat}, ${+m.lng}</a>`:'📍 Location shared'):esc(m.text)}<br><small style="color:#666">${esc(m.t)}${m.by?' · '+esc(m.by):''}</small></span></div>`).join('')}</div>
+${off?'<p style="color:#dc2626">⏸ This chat is paused by the Super Admin. You can read but not reply.</p>':`<div class="row"><input id="wm" placeholder="Type a message…"><button class="b" onclick="send()">Send</button>${role==='S'?'<button class="b" id="rb" onclick="recv()">🎤</button>':''}</div>`}`}
+function push(m){const c=D.wa.chats.find(x=>x.id===cur);c.msgs.push(Object.assign({dir:'out',t:new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),by:role==='S'?'Super Admin':me.name},m));save();addLog('sent '+m.type+' (chat '+cur+')');oc(cur);sb()}
+function send(){const v=$('#wm').value.trim(),c=D.wa.chats.find(x=>x.id===cur),n=D.wa.numbers.find(x=>x.id===c.numId);if(!v)return;if(n.hung&&role!=='S')return alert('This chat is paused');push({type:'text',text:v})}
+function reqLoc(){push({type:'text',text:'Please share your location 📍 (optional) so we can help you better.'})}
+async function recv(){const b=$('#rb');if(mr&&mr.state==='recording'){mr.stop();return}try{const s=await navigator.mediaDevices.getUserMedia({audio:true});mr=new MediaRecorder(s);ch=[];mr.ondataavailable=e=>ch.push(e.data);mr.onstop=()=>{s.getTracks().forEach(t=>t.stop());const r=new FileReader();r.onload=()=>push({type:'voice',url:r.result});r.readAsDataURL(new Blob(ch,{type:mr.mimeType}))};mr.start();b.textContent='⏹ Stop & send'}catch(e){alert('Microphone not available')}}
+function hang(id){const n=D.wa.numbers.find(x=>x.id===id);n.hung=!n.hung;save();addLog((n.hung?'hung ':'resumed ')+n.label);wl();if(cur)oc(cur)}
+function delChat(){if(role!=='S'||!confirm('Delete this chat permanently?'))return;D.wa.chats=D.wa.chats.filter(c=>c.id!==cur);save();addLog('deleted chat '+cur);cur=null;wa()}
+function addNum(){const l=$('#n_l').value.trim(),p=$('#n_p').value.replace(/\D/g,'');if(!l||!p)return alert('Label and number required');D.wa.numbers.push({id:Date.now(),label:l,branch:$('#n_b').value,phone:p,hung:false});save();wa()}
+function demoOld(){const id=Date.now();D.wa.numbers.push({id,label:'Sales 1',branch:(D.branches[0]||{}).name||'Main',phone:'923001234567',hung:false});D.wa.chats.push({id:id+1,numId:id,name:'Ali Khan',phone:'923331112233',msgs:[{dir:'in',type:'text',text:'Assalam o Alaikum, First Aider course ki fees?',t:'10:02'},{dir:'out',type:'text',text:'Walaikum Assalam! Details bhej raha hoon.',t:'10:05',by:'Sales'},{dir:'in',type:'loc',lat:33.5651,lng:73.0169,t:'10:07'}]});save();wa()}
+let bf='';
+const sb=()=>{const e=$('#wc div[style*="overflow-y"]');if(e)e.scrollTop=e.scrollHeight};
+const vis=()=>myNums().filter(n=>!bf||n.branch===bf);
+function autoOpen(){const ids=vis().map(n=>n.id),c=D.wa.chats.find(x=>x.id===cur&&ids.includes(x.numId))||D.wa.chats.find(x=>ids.includes(x.numId));if(c){oc(c.id);wl();sb()}}
+function wl(){const bs=[...new Set(myNums().map(n=>n.branch).filter(Boolean))];
+$('#wl').innerHTML=(role==='S'?`<select onchange="bf=this.value;wl();autoOpen()"><option value="">All branches</option>${bs.map(b=>`<option${b===bf?' selected':''}>${esc(b)}</option>`).join('')}</select><br><br>`:'')+vis().map(n=>{const cs=D.wa.chats.filter(c=>c.numId===n.id);return `<div style="margin-bottom:14px"><b>📍 ${esc(n.branch||'No branch')}</b> · ${esc(n.label)} <small class="${bc()}">${esc(mask(n.phone))}</small> ${n.hung?'<span style="color:#dc2626">⏸ paused</span>':''}${role==='S'?` <button class="b s${n.hung?'':' r'}" onclick="hang(${n.id})">${n.hung?'Resume':'Hang'}</button> <button class="b s r" onclick="delNum(${n.id})">✕</button>`:''}${cs.map(c=>{const last=c.msgs[c.msgs.length-1]||{},q=[...c.msgs].reverse().find(m=>m.dir==='in'&&m.type==='text');return `<div onclick="oc(${c.id});wl();sb()" style="padding:8px;border-bottom:1px solid var(--bd);cursor:pointer;${c.id===cur?'background:var(--bg)':''}"><b>👤 ${esc(c.name)}</b> <small style="float:right">${esc(last.t||'')}</small><br><small class="${bc()}">${esc(mask(c.phone))}</small><br><small>💬 ${esc(q?q.text.slice(0,60):last.type==='voice'?'🎤 Voice message':'—')}</small></div>`}).join('')||'<p><small>No chats yet.</small></p>'}</div>`}).join('')||'<p>No WhatsApp numbers yet.</p>'}
+function delNum(id){if(role!=='S'||!confirm('Delete this number and all its chats?'))return;D.wa.numbers=D.wa.numbers.filter(n=>n.id!==id);D.wa.chats=D.wa.chats.filter(c=>c.numId!==id);save();addLog('deleted number '+id);cur=null;wa()}
+function demo(){if(D.wa.numbers.some(n=>n.demo))return alert('Demo chats are already loaded');const id=Date.now(),B=D.branches.length?D.branches.map(b=>b.name):['Rawalpindi','Lahore'],q=[['Ali Khan','923331112233',['Assalam o Alaikum, First Aider course ki fees kya hai?','Duration kitni hai?']],['Sara Noor','923214445566',['Fire Safety course ki next batch kab start hogi?','Certificate verify ho jata hai?']],['Usman Tariq','923005557788',['Web Development ka admission open hai?']]];
+B.slice(0,2).forEach((b,i)=>{const nid=id+i*10;D.wa.numbers.push({id:nid,demo:1,label:'Sales '+(i+1),branch:b,phone:'92300123456'+i,hung:false});q.forEach((x,j)=>D.wa.chats.push({id:nid+j+1,numId:nid,name:x[0],phone:x[1].slice(0,-1)+i,msgs:x[2].map((t,k)=>({dir:'in',type:'text',text:t,t:'1'+k+':0'+j})).concat([{dir:'out',type:'text',text:'Walaikum Assalam! Details share kar raha hoon.',t:'12:1'+j,by:'Sales'}],j===0?[{dir:'in',type:'loc',lat:33.5651,lng:73.0169,t:'12:20'}]:[])}))});save();wa()}
+function logv(){$('#view').innerHTML=`<h2>Activity Log</h2><div class="card"><p>The server build (server.js) also records each user’s IP address for every action.</p><table><thead><tr><th>Time</th><th>User</th><th>Action</th></tr></thead><tbody>${(D.log||[]).slice().reverse().map(l=>`<tr><td>${esc(l.t)}</td><td>${esc(l.u)}</td><td>${esc(l.a)}</td></tr>`).join('')||'<tr><td>No activity.</td></tr>'}</tbody></table></div>`}
+landing();
+</script></body></html>
